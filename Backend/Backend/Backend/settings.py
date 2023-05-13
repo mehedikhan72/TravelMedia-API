@@ -174,7 +174,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = [
     "https://localhost:3000",
-    "https://mehedikhan72.github.io/travelmedia-react/"
+    "https://travel-media.netlify.app/"
 ]
 
 
