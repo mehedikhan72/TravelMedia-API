@@ -108,12 +108,13 @@ ASGI_APPLICATION = 'Backend.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'travelmedia',
-        'USER': 'mehedikhan',
-        'PASSWORD': 'mehedikhan',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'fKxdxWBpVvULhiqJJA5d',
+        'HOST': 'containers-us-west-15.railway.app',
+        'PORT': '6211',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
