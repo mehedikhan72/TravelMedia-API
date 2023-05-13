@@ -51,20 +51,40 @@ INSTALLED_APPS = [
     'drf_social_oauth2',
 ]
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("127.0.0.1", 6379)],
-#         },
-#     },
-# }
+# settings.py
 
-CHANNEL_LAYERS = {
+
+REDIS_HOST = 'containers-us-west-21.railway.app'
+REDIS_PORT = '8065'
+REDIS_DB = 0
+REDIS_PASSWORD = 'XetA2qs5z53C7o9cGOyI'
+
+CACHES = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": REDIS_PASSWORD,
+        },
     }
 }
+
+# Channels Configuration
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(REDIS_HOST, REDIS_PORT)],
+            "password": REDIS_PASSWORD,
+            "db": REDIS_DB,
+            "prefix": "channels",
+            "socket_timeout": 5,
+            "retry_on_timeout": True,
+        },
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
